@@ -1,54 +1,208 @@
 @extends('layouts.app')
 
-@section('title', 'Destinations')
-
 @section('content')
 
-    {{-- Page Banner --}}
-    <div class="site-blocks-cover inner-page-cover" style="background-image: url({{ asset('images/bg2.jpg') }});" data-aos="fade" data-stellar-background-ratio="0.5">
-        <div class="container">
-            <div class="row align-items-center justify-content-center text-center">
-                <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
-                    <h1 class="text-white font-weight-light">Destinations</h1>
-                    <div>
-                        <a href="{{ route('home') }}">Home</a>
-                        <span class="mx-2 text-white">&bullet;</span>
-                        <span class="text-white">Destinations</span>
-                    </div>
-                </div>
+<!-- HERO -->
+<section class="hero-wrap hero-wrap-2"
+    style="background-image: url('{{ asset('images/bg2.jpg') }}');
+           height: 500px;
+           background-size: cover;
+           background-position: center;">
+
+    <div class="overlay"></div>
+
+    <div class="container">
+
+        <div class="row no-gutters slider-text align-items-center justify-content-center"
+             style="height:500px;">
+
+            <div class="col-md-9 text-center">
+
+                <h1 class="mb-3 bread text-white">
+                    DESTINATIONS
+                </h1>
+
+                <p class="breadcrumbs">
+
+                    <span class="mr-2">
+
+                        <a href="{{ route('home') }}">
+                            Home
+                        </a>
+
+                    </span>
+
+                    <span>
+                        Destinations
+                    </span>
+
+                </p>
+
             </div>
+
         </div>
+
     </div>
 
-    {{-- Destinations Grid --}}
-    <div class="site-section">
-        <div class="container">
-            <div class="row">
-              @foreach([
-                    ['hero_bg2.jpeg', 'Gunung Rinjani', 'rinjani', 'Puncak legenda di Lombok dengan danau Segara Anak yang memukau.', 'Rp 1.500.000'],
-                    ['semeru.jpg', 'Gunung Semeru', 'semeru', 'Atap Pulau Jawa, jalur ikonik yang penuh tantangan dan keindahan.', 'Rp 900.000'],
-                    ['bromo.jpg', 'Gunung Bromo', 'bromo', 'Lautan pasir dan kawah aktif yang paling terkenal di Indonesia.', 'Rp 500.000'],
-                    ['destinasi.jpg', 'Gunung Prau', 'prau', 'Gunung ramah pemula dengan golden sunrise terbaik di Dieng.', 'Rp 350.000'],
-                    ['papandayan.jpg', 'Gunung Papandayan', 'papandayan', 'Kawah belerang eksotis dan hutan mati yang instagramable.', 'Rp 400.000'],
-                    ['kerinci.jpg', 'Gunung Kerinci', 'kerinci', 'Gunung tertinggi di Sumatera, surga tersembunyi yang belum ramai.', 'Rp 1.200.000'],
-                ] as $dest)
-                <div id="{{ $dest[2] }}" class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                    <div class="destination-item">
-                        <img src="{{ asset('images/' . $dest[0]) }}" 
-                            alt="{{ $dest[1] }}" 
-                            class="img-fluid mb-3"
-                            style="width: 100%; height: 250px; object-fit: cover;">
-                        <div class="destination-info">
-                            <h3>{{ $dest[1] }}</h3>
-                            <p>{{ $dest[3] }}</p>
-                            <p class="text-primary font-weight-bold">Starting from {{ $dest[4] }}</p>
-                            <a href="{{ route('booking') }}" class="btn btn-primary btn-sm text-white">Book Now</a>
-                        </div>
+</section>
+
+<!-- DESTINATION LIST -->
+<section class="ftco-section">
+
+    <div class="container">
+
+        <div class="row">
+
+            @foreach($destinations as $destination)
+
+            <div class="col-lg-4 col-md-6 mb-5">
+
+                <div class="destination-card">
+
+                    <!-- IMAGE -->
+                    <div class="destination-image">
+
+                        <img
+                            src="{{ asset('images/destinations/' . $destination->image) }}"
+                            alt="{{ $destination->title }}"
+                        >
+
                     </div>
+
+                    <!-- CONTENT -->
+                    <div class="destination-content">
+
+                        <h3>
+                            {{ $destination->title }}
+                        </h3>
+
+                        <p>
+                            {{ \Illuminate\Support\Str::limit($destination->description, 90) }}
+                        </p>
+
+                        <div class="price">
+                            Starting from {{ $destination->price }}
+                        </div>
+
+                        <a href="{{ route('destination.detail', $destination->id) }}"
+                           class="book-btn">
+
+                            Explore
+
+                        </a>
+
+                    </div>
+
                 </div>
-                @endforeach
+
             </div>
+
+            @endforeach
+
         </div>
+
     </div>
+
+</section>
+
+<style>
+
+/* SECTION */
+
+.ftco-section{
+    padding: 100px 0;
+    background: #f8f8f8;
+}
+
+/* CARD */
+
+.destination-card{
+    background: #fff;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.destination-card:hover{
+    transform: translateY(-10px);
+}
+
+/* IMAGE */
+
+.destination-image{
+    overflow: hidden;
+}
+
+.destination-image img{
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.destination-card:hover img{
+    transform: scale(1.08);
+}
+
+/* CONTENT */
+
+.destination-content{
+    padding: 28px;
+}
+
+.destination-content h3{
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.destination-content p{
+    font-size: 16px;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* PRICE */
+
+.price{
+    font-size: 24px;
+    color: #ff5e3a;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* BUTTON */
+
+.book-btn{
+    display: inline-block;
+    background: #ff5e3a;
+    color: #fff !important;
+
+    padding: 12px 28px;
+    border-radius: 5px;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: .3s;
+}
+
+.book-btn:hover{
+    background: #222;
+    color: #fff !important;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .destination-image img{
+        height: 230px;
+    }
+
+}
+
+</style>
 
 @endsection

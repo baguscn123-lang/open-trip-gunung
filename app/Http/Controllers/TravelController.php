@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use App\Models\Destination;
 use Illuminate\Support\Str;
 
 class TravelController extends Controller
@@ -15,9 +16,27 @@ class TravelController extends Controller
     }
 
     public function destination()
-    {
-        return view('pages.destination');
-    }
+{
+    $destinations = Destination::latest()->get();
+
+    return view('pages.destination', compact('destinations'));
+}
+
+public function destinationDetail($id)
+{
+    $destination = Destination::findOrFail($id);
+
+    $relatedDestinations = Destination::where('id', '!=', $id)
+        ->latest()
+        ->take(4)
+        ->get();
+
+    return view('pages.destination-detail', compact(
+        'destination',
+        'relatedDestinations'
+    ));
+}
+
 
     public function discount()
     {
@@ -46,7 +65,21 @@ class TravelController extends Controller
     public function blogDetail($id)
     {
         $blog = Blog::findOrFail($id);
-        return view('pages.blog-detail', compact('blog'));
+
+        $relatedBlogs = Blog::where('id', '!=', $id)
+            ->latest()
+            ->take(4)
+            ->get();
+
+        $trendingBlogs = Blog::latest()
+            ->take(5)
+            ->get();
+
+        return view('pages.blog-detail', compact(
+            'blog',
+            'relatedBlogs',
+            'trendingBlogs'
+        ));
     }
 
     public function contact()

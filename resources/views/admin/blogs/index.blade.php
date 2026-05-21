@@ -5,7 +5,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h3 style="color:#e8604c">Daftar Blog</h3>
-    <a href="{{ route('admin.blogs.create') }}" class="btn btn-primary">+ Tambah Blog</a>
+    <a href="{{ route('blogs.create') }}" class="btn btn-primary">+ Tambah Blog</a>
 </div>
 
 @if(session('success'))
@@ -42,9 +42,9 @@
                 <td>{{ $blog->author }}</td>
                 <td>{{ $blog->created_at->format('d M Y') }}</td>
                 <td>
-                    <a href="{{ route('admin.blogs.edit', $blog) }}" 
+                    <a href="{{ route('blogs.edit', $blog) }}" 
                        class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{{ route('admin.blogs.destroy', $blog) }}" 
+                    <form action="{{ route('blogs.destroy', $blog) }}" 
                           method="POST" style="display:inline">
                         @csrf
                         @method('DELETE')

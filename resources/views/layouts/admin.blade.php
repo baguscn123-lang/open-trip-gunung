@@ -108,10 +108,27 @@
         <h4>Langit Nusantara</h4>
         <small>Admin Panel</small>
     </div>
-    <a href="{{ route('admin.blogs.index') }}" 
+   <li>
+
+    <a href="{{ route('blogs.index') }}"
        class="{{ request()->routeIs('admin.blogs.*') ? 'active' : '' }}">
-        <span>&#9998;</span> Kelola Blog
+
+        ✏ Kelola Blog
+
     </a>
+
+</li>
+
+<li>
+
+     <a href="{{ route('destinations.index') }}"
+     class="{{ request()->routeIs('destinations.*') ? 'active' : '' }}">
+
+        🏔 Kelola Destination
+
+    </a>
+
+</li>
     <a href="{{ route('home') }}">
         <span>&#8962;</span> Lihat Website
     </a>
