@@ -202,8 +202,7 @@
     </div>
 </div>
  
-
-    {{-- Blog Section - Langit Nusantara (Foto Rata) --}}
+{{-- Blog Section - Dinamis dari Database --}}
 <div class="site-section">
     <div class="container">
         <div class="row justify-content-center mb-5">
@@ -213,96 +212,51 @@
             </div>
         </div>
         <div class="row mb-3 align-items-stretch">
- 
-            {{-- Artikel 1 --}}
-            <div class="col-md-6 col-lg-6 mb-4 mb-lg-4">
-                <div class="h-entry">
-                    {{-- Wrapper foto agar tinggi selalu sama --}}
-                    <div style="height:280px; overflow:hidden; border-radius:4px;">
-                        <img src="{{ asset('images/opentrip.jpg') }}"
-                             alt="Open Trip vs Solo"
-                             style="width:100%; height:100%; object-fit:cover; object-position:center;">
-                    </div>
-                    <h2 class="font-size-regular mt-3">
-                        <a href="#">Kenapa Open Trip Lebih Seru dari Pendakian Solo?</a>
-                    </h2>
-                    <div class="meta mb-4">
-                        by Tim Langit Nusantara
-                        <span class="mx-2">&bullet;</span>
-                        <a href="#">Open Trip</a>
-                    </div>
-                    <p>Teman baru, biaya lebih hemat, dan pemandu berpengalaman. Temukan 5 alasan kenapa ribuan pendaki memilih open trip bersama Langit Nusantara dibanding mendaki sendiri.</p>
-                    <a href="#" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
-                </div>
-            </div>
- 
-            {{-- Artikel 2 --}}
-            <div class="col-md-6 col-lg-6 mb-4 mb-lg-4">
-                <div class="h-entry">
-                    {{-- Wrapper foto agar tinggi selalu sama --}}
-                    <div style="height:280px; overflow:hidden; border-radius:4px;">
-                        <img src="{{ asset('images/destinasi.jpg') }}"
-                             alt="5 Gunung Terbaik Pemula"
-                             style="width:100%; height:100%; object-fit:cover; object-position:center;">
-                    </div>
-                    <h2 class="font-size-regular mt-3">
-                        <a href="#">5 Gunung Terbaik untuk Pemula di Indonesia 2025</a>
-                    </h2>
-                    <div class="meta mb-4">
-                        by Tim Langit Nusantara
-                        <span class="mx-2">&bullet;</span>
-                        <a href="#">Destinasi</a>
-                    </div>
-                    <p>Belum pernah mendaki? Jangan khawatir. Kami pilihkan 5 gunung dengan jalur aman, pemandangan luar biasa, dan cocok untuk pendaki pertama kali bersama open trip kami.</p>
-                    <a href="#" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
-                </div>
-            </div>
- 
-            {{-- Artikel 3 - Testimoni --}}
-            <div class="col-md-6 col-lg-6 mb-4 mb-lg-4">
-                <div class="h-entry">
-                    <div style="height:280px; overflow:hidden; border-radius:4px;">
-                        <img src="{{ asset('images/testimoni1.jpg') }}"
-                            alt="Testimoni Pendaki Langit Nusantara"
-                            style="width:100%; height:100%; object-fit:cover; object-position:center top;">
-                    </div>
-                    <h2 class="font-size-regular mt-3">
-                        <a href="#">"Pertama Kali Mendaki di Usia 40, dan Saya Tidak Menyesal"</a>
-                    </h2>
-                    <div class="meta mb-4">
-                        by Rina Kusuma, Peserta Trip Prau
-                        <span class="mx-2">&bullet;</span>
-                        <a href="#">Testimoni</a>
-                    </div>
-                    <p>Rina tidak pernah membayangkan bisa menikmati sunrise di atas awan. Bersama tim Langit Nusantara, mimpi itu jadi kenyataan. Ini kisah perjalanannya.</p>
-                    <a href="#" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
-                </div>
-            </div>
-            
-            {{-- Artikel 4 - Tips Perlengkapan --}}
-            <div class="col-md-6 col-lg-6 mb-4 mb-lg-4">
-                <div class="h-entry">
-                    <div style="height:280px; overflow:hidden; border-radius:4px;">
-                        <img src="{{ asset('images/tips1.jpg') }}"
-                            alt="Perlengkapan Pendakian Wajib"
-                            style="width:100%; height:100%; object-fit:cover; object-position:center;">
-                    </div>
-                    <h2 class="font-size-regular mt-3">
-                        <a href="#">10 Perlengkapan Wajib Open Trip yang Sering Terlupa</a>
-                    </h2>
-                    <div class="meta mb-4">
-                        by Tim Langit Nusantara
-                        <span class="mx-2">&bullet;</span>
-                        <a href="#">Tips Pendakian</a>
-                    </div>
-                    <p>Sudah siap fisik dan mental, tapi lupa bawa perlengkapan penting? Simak daftar 10 barang yang wajib ada di tas pendakian kamu sebelum berangkat trip.</p>
-                    <a href="#" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
-                </div>
-            </div>
-    
-        </div>
-    </div>
-    
 
+            @forelse($latestBlogs as $blog)
+            <div class="col-md-6 col-lg-6 mb-4 mb-lg-4">
+                <div class="h-entry">
+                    <div style="height:280px; overflow:hidden; border-radius:4px;">
+                        @if($blog->image)
+                            <img src="{{ asset('storage/' . $blog->image) }}"
+                                 alt="{{ $blog->title }}"
+                                 style="width:100%; height:100%; object-fit:cover; object-position:center;">
+                        @else
+                            <img src="{{ asset('images/opentrip.jpg') }}"
+                                 alt="{{ $blog->title }}"
+                                 style="width:100%; height:100%; object-fit:cover; object-position:center;">
+                        @endif
+                    </div>
+                    <h2 class="font-size-regular mt-3">
+                        <a href="{{ route('blog.detail', $blog->id) }}">{{ $blog->title }}</a>
+                    </h2>
+                    <div class="meta mb-4">
+                        by {{ $blog->author }}
+                        <span class="mx-2">&bullet;</span>
+                        <a href="#">{{ $blog->category }}</a>
+                    </div>
+                    <p>{{ Str::limit(strip_tags($blog->content), 120) }}</p>
+                    <a href="{{ route('blog.detail', $blog->id) }}" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
+                </div>
+            </div>
+            @empty
+            <div class="col-12 text-center">
+                <p>Belum ada artikel blog.</p>
+            </div>
+            @endforelse
+
+        </div>
+
+        {{-- Tombol ke halaman blog --}}
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="{{ route('blog') }}" class="btn btn-outline-primary border-2 py-3 px-5">
+                    Lihat Semua Blog
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 @endsection

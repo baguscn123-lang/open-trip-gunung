@@ -1,0 +1,75 @@
+/* Section Title */
+.blog-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 5px;
+}
+.blog-section-line {
+    border-top: 2px solid #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Featured Card (besar) */
+.blog-featured-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.blog-featured-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+.blog-featured-card .blog-featured-body {
+    padding: 12px 0;
+}
+.blog-featured-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+    margin: 5px 0;
+}
+
+/* Small Card */
+.blog-small-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.blog-small-card img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+}
+.blog-small-card .blog-small-body {
+    padding: 8px 0;
+}
+.blog-small-card h5 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+    margin: 4px 0;
+    line-height: 1.4;
+}
+
+/* Category label */
+.blog-category {
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Hover effect */
+.blog-featured-card:hover h3,
+.blog-small-card:hover h5 {
+    color: #e74c3c;
+}
