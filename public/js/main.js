@@ -1,4 +1,4 @@
- AOS.init({
+AOS.init({
  	duration: 800,
  	easing: 'slide',
  	once: true
@@ -235,5 +235,11 @@ jQuery(document).ready(function($) {
 
 	};
 	siteDatePicker();
+
+	// Fix dropdown anchor link agar bisa navigate ke section gunung
+	$('.has-children .dropdown li a').on('click', function(e) {
+		e.stopPropagation();
+		window.location.href = $(this).attr('href');
+	});
 
 });

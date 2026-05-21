@@ -5,7 +5,7 @@
 @section('content')
 
     {{-- Page Banner --}}
-    <div class="site-blocks-cover inner-page-cover" style="background-image: url({{ asset('images/hero_bg_2.jpg') }});" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="site-blocks-cover inner-page-cover" style="background-image: url({{ asset('images/bg2.jpg') }});" data-aos="fade" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row align-items-center justify-content-center text-center">
                 <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
@@ -24,21 +24,24 @@
     <div class="site-section">
         <div class="container">
             <div class="row">
-                @foreach([
-                    ['img_1.jpg', 'Japan', 'Explore ancient temples and modern cities.', '$1,200'],
-                    ['img_2.jpg', 'Europe', 'Discover rich history and culture across Europe.', '$2,500'],
-                    ['img_3.jpg', 'China', 'Walk the Great Wall and explore ancient wonders.', '$1,800'],
-                    ['hero_bg_1.jpg', 'France', 'Romance, art, and cuisine in the heart of Europe.', '$2,000'],
-                    ['hero_bg_2.jpg', 'Philippines', 'Pristine beaches and breathtaking island scenery.', '$900'],
-                    ['img_1.jpg', 'Bali', 'Spiritual retreats and tropical paradise.', '$800'],
+              @foreach([
+                    ['hero_bg2.jpeg', 'Gunung Rinjani', 'rinjani', 'Puncak legenda di Lombok dengan danau Segara Anak yang memukau.', 'Rp 1.500.000'],
+                    ['semeru.jpg', 'Gunung Semeru', 'semeru', 'Atap Pulau Jawa, jalur ikonik yang penuh tantangan dan keindahan.', 'Rp 900.000'],
+                    ['bromo.jpg', 'Gunung Bromo', 'bromo', 'Lautan pasir dan kawah aktif yang paling terkenal di Indonesia.', 'Rp 500.000'],
+                    ['destinasi.jpg', 'Gunung Prau', 'prau', 'Gunung ramah pemula dengan golden sunrise terbaik di Dieng.', 'Rp 350.000'],
+                    ['papandayan.jpg', 'Gunung Papandayan', 'papandayan', 'Kawah belerang eksotis dan hutan mati yang instagramable.', 'Rp 400.000'],
+                    ['kerinci.jpg', 'Gunung Kerinci', 'kerinci', 'Gunung tertinggi di Sumatera, surga tersembunyi yang belum ramai.', 'Rp 1.200.000'],
                 ] as $dest)
-                <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+                <div id="{{ $dest[2] }}" class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
                     <div class="destination-item">
-                        <img src="{{ asset('images/' . $dest[0]) }}" alt="{{ $dest[1] }}" class="img-fluid mb-3">
+                        <img src="{{ asset('images/' . $dest[0]) }}" 
+                            alt="{{ $dest[1] }}" 
+                            class="img-fluid mb-3"
+                            style="width: 100%; height: 250px; object-fit: cover;">
                         <div class="destination-info">
                             <h3>{{ $dest[1] }}</h3>
-                            <p>{{ $dest[2] }}</p>
-                            <p class="text-primary font-weight-bold">Starting from {{ $dest[3] }}</p>
+                            <p>{{ $dest[3] }}</p>
+                            <p class="text-primary font-weight-bold">Starting from {{ $dest[4] }}</p>
                             <a href="{{ route('booking') }}" class="btn btn-primary btn-sm text-white">Book Now</a>
                         </div>
                     </div>

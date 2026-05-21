@@ -39,12 +39,29 @@
     <header class="site-navbar py-1" role="banner">
         <div class="container">
             <div class="row align-items-center">
-
+    
                 <div class="col-6 col-xl-2">
-                    <h1 class="mb-0">
-                        <a href="{{ route('home') }}" class="text-black h2 mb-0">Travelers</a>
-                    </h1>
+                    <a href="{{ route('home') }}" class="text-black mb-0" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
+    
+                        {{-- Logo SVG Inline --}}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 80 80" fill="none">
+                            <rect width="80" height="80" rx="10" fill="#1a1a1a"/>
+                            <polygon points="10,62 28,30 40,48 52,34 70,62" fill="#BA7517"/>
+                            <polygon points="28,30 35,18 40,28 34,38" fill="#EF9F27"/>
+                            <polygon points="52,34 62,20 70,38 62,62" fill="#EF9F27"/>
+                            <line x1="8" y1="64" x2="72" y2="64" stroke="#EF9F27" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+    
+                        {{-- Teks Brand --}}
+                        <div style="display:flex; flex-direction:column; line-height:1.15;">
+                            <span style="font-size:16px; font-weight:700; color:#1a1a1a; letter-spacing:1px;">LANGIT NUSANTARA</span>
+                            <span style="font-size:9px; color:#BA7517; letter-spacing:2px; text-transform:uppercase;">Open Trip Gunung Indonesia</span>
+                        </div>
+    
+                    </a>
                 </div>
+ 
+
 
                 <div class="col-10 col-md-8 d-none d-xl-block">
                     <nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
@@ -55,10 +72,12 @@
                             <li class="has-children {{ request()->routeIs('destination') ? 'active' : '' }}">
                                 <a href="{{ route('destination') }}">Destinations</a>
                                 <ul class="dropdown">
-                                    <li><a href="#">Japan</a></li>
-                                    <li><a href="#">Europe</a></li>
-                                    <li><a href="#">China</a></li>
-                                    <li><a href="#">France</a></li>
+                                    <li><a href="{{ route('destination') }}#rinjani">Rinjani</a></li>
+                                    <li><a href="{{ route('destination') }}#semeru">Semeru</a></li>
+                                    <li><a href="{{ route('destination') }}#bromo">Bromo</a></li>
+                                    <li><a href="{{ route('destination') }}#prau">Prau</a></li>
+                                    <li><a href="{{ route('destination') }}#papandayan">Papandayan</a></li>
+                                    <li><a href="{{ route('destination') }}#kerinci">Kerinci</a></li>
                                 </ul>
                             </li>
                             <li class="{{ request()->routeIs('discount') ? 'active' : '' }}">
@@ -107,8 +126,8 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="mb-5">
-                        <h3 class="footer-heading mb-4">About Travelers</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione, et non dignissimos culpa?</p>
+                        <h3 class="footer-heading mb-4">Langit Nusantara</h3>
+                        <p>Kami hadir untuk menemani setiap langkahmu menuju puncak. Open trip gunung Indonesia yang aman, terpercaya, dan penuh kenangan.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-5 mb-lg-0">
@@ -137,7 +156,7 @@
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="mb-5">
                         <h3 class="footer-heading mb-2">Subscribe Newsletter</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit minima minus odio.</p>
+                        <p>Dapatkan info open trip terbaru, tips pendakian, dan promo spesial langsung di emailmu.</p>
                         <form action="#" method="post">
                             @csrf
                             <div class="input-group mb-3">
@@ -160,9 +179,8 @@
                         <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
                     </div>
                     <p>
-                        Copyright &copy; {{ date('Y') }} All rights reserved |
-                        This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by
-                        <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        Copyright © 2026 Langit Nusantara | Open Trip Gunung Indonesia <i class="icon-heart-o" aria-hidden="true"></i> by
+                        <a href="https://langit_Nusantara.com" target="_blank">langitNusantara</a>
                     </p>
                 </div>
             </div>
